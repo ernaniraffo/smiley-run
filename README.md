@@ -1,2 +1,2 @@
 # smiley-run
- Smiley Run 
+Smiley Run is a game in development inspired by Smash Hit.
