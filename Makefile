@@ -1,3 +1,3 @@
 
 format:
-	clang-format --style=llvm -i Assets/Scripts/*.cs
+	clang-format --style=file -i Assets/Scripts/*.cs
