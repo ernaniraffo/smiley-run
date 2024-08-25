@@ -357,7 +357,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3234931098661268466}
   - component: {fileID: 4213971510447174539}
-  - component: {fileID: 4747713663476269088}
+  - component: {fileID: 7833680160982978530}
   m_Layer: 0
   m_Name: Diamonds
   m_TagString: Untagged
@@ -394,7 +394,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 200
---- !u!54 &4747713663476269088
+--- !u!54 &7833680160982978530
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
