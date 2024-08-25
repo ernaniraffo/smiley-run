@@ -6,8 +6,10 @@ using DG.Tweening;
 public class PlayerManager : MonoBehaviour {
     public GameObject player;
     bool move = false;
-    bool moving = false;
+    bool movingX = false;
+    bool movingY = false;
     float duration = 0.075f;
+    public float speed = 20f;
 
     // Start is called before the first frame update
     void Start() {
@@ -16,7 +18,10 @@ public class PlayerManager : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update() { HandleMovement(); }
+    void Update() {
+        MovePlayerForward();
+        HandleMovement();
+    }
 
     void HandleMovement() {
         float x = player.gameObject.transform.position.x;
@@ -25,34 +30,41 @@ public class PlayerManager : MonoBehaviour {
             y += 10;
             move = true;
         }
-        if (Input.GetKeyDown(KeyCode.A) ||
-            Input.GetKeyDown(KeyCode.LeftArrow)) {
+        if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow)) {
             x -= 10;
             move = true;
         }
-        if (Input.GetKeyDown(KeyCode.D) ||
-            Input.GetKeyDown(KeyCode.RightArrow)) {
+        if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow)) {
             x += 10;
             move = true;
         }
-        if (Input.GetKeyDown(KeyCode.S) ||
-            Input.GetKeyDown(KeyCode.DownArrow)) {
+        if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)) {
             y -= 10;
             move = true;
         }
         // transform.position = new Vector3(x, y, 0);
-        if (move && !moving) {
+        if (move && !movingX && !movingY) {
             move = false;
-            moving = true;
-            transform.DOMove(new Vector3(x, y, 0), duration)
-                .OnComplete(StopMoving);
+            movingX = true;
+            movingY = true;
+            transform.DOMoveX(x, duration).OnComplete(StopMovingX);
+            transform.DOMoveY(y, duration).OnComplete(StopMovingY);
         }
     }
 
-    private void StopMoving() {
-        Debug.Log("Stop moving!!");
-        moving = false;
+    private void StopMovingX() {
+        movingX = false;
     }
 
-    public Vector3 GetPlayerPosition() { return player.transform.position; }
+    private void StopMovingY() {
+        movingY = false;
+    }
+
+    public Vector3 GetPlayerPosition() {
+        return player.transform.position;
+    }
+
+    public void MovePlayerForward() {
+        player.transform.position += new Vector3(0, 0, speed * Time.deltaTime);
+    }
 }

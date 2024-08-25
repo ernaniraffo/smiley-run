@@ -9,5 +9,12 @@ public class CameraManager : MonoBehaviour {
         mainCamera.GetComponent<Camera>().fieldOfView = 60f;
     }
 
-    void Update() {}
+    void Update() {
+        FollowPlayer();
+    }
+
+    void FollowPlayer() {
+        Vector3 playerPosition = GameSingleton.instance.playerManager.GetPlayerPosition();
+        mainCamera.transform.position = new Vector3(0, 0, playerPosition.z - 30);
+    }
 }
