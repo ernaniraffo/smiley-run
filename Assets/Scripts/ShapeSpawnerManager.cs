@@ -20,7 +20,7 @@ public class ShapeSpawnerManager : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        MoveSpawnerWithPlayer();
+        // MoveSpawnerWithPlayer();
         if (startSpawner) {
             StartCoroutine(SpawnShapes());
             startSpawner = false;
@@ -39,9 +39,9 @@ public class ShapeSpawnerManager : MonoBehaviour {
         }
     }
 
-    private void MoveSpawnerWithPlayer() {
-        Vector3 playerPosition = GameSingleton.instance.playerManager.GetPlayerPosition();
-        spawner.gameObject.transform.position =
-            new Vector3(0, 0, playerPosition.z + distanceFromPlayer);
-    }
+    // private void MoveSpawnerWithPlayer() {
+    //     Vector3 playerPosition = GameSingleton.instance.playerManager.GetPlayerPosition();
+    //     spawner.gameObject.transform.position =
+    //         new Vector3(0, 0, playerPosition.z + distanceFromPlayer);
+    // }
 }

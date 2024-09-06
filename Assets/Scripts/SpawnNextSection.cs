@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SpawnNextSection : MonoBehaviour {
     public GameObject sectionPrefab;
-    public float distance = 75f;
+    private float distance = 75f;
 
     // Start is called before the first frame update
     void Start() {

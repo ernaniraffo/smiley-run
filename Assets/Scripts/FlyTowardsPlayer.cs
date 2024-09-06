@@ -14,6 +14,14 @@ public class FlyTowardsPlayer : MonoBehaviour {
     }
 
     void Update() {
+        CalculateDirection();
+    }
+
+    void FixedUpdate() {
+        MoveTowards();
+    }
+
+    void CalculateDirection() {
         Vector3 playerPos = GameSingleton.instance.playerManager.GetPlayerPosition();
         float distance = transform.position.z - playerPos.z;
         if (distance > 10f) {
@@ -23,7 +31,7 @@ public class FlyTowardsPlayer : MonoBehaviour {
         }
     }
 
-    void FixedUpdate() {
+    void MoveTowards() {
         if (moveTowards) {
             rb.AddForce(direction * thrust);
         }
