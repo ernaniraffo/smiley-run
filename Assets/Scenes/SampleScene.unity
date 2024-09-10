@@ -20,7 +20,7 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
+  m_AmbientSkyColor: {r: 0, g: 0, b: 0, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
@@ -413,6 +413,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 360343067219012707, guid: 8377f5ddc3afa4dacb132d5b9ad946df, type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3614698609347921366, guid: 8377f5ddc3afa4dacb132d5b9ad946df, type: 3}
       propertyPath: m_Name
       value: Section
@@ -535,7 +539,7 @@ Light:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 705507993}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
@@ -605,13 +609,13 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!43 &714447995
+--- !u!43 &751279405
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-46872
+  m_Name: pb_Mesh-46872(Clone)
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -827,7 +831,7 @@ MeshCollider:
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: 714447995}
+  m_Mesh: {fileID: 751279405}
 --- !u!33 &859117557
 MeshFilter:
   m_ObjectHideFlags: 10
@@ -835,7 +839,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 859117554}
-  m_Mesh: {fileID: 714447995}
+  m_Mesh: {fileID: 751279405}
 --- !u!23 &859117558
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1438,7 +1442,7 @@ MonoBehaviour:
     m_AreaError: 15
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
-  m_Mesh: {fileID: 714447995}
+  m_Mesh: {fileID: 751279405}
   m_VersionIndex: 3472
   m_IsSelectable: 1
   m_SelectedFaces: 
@@ -1460,7 +1464,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &903655394
 Transform:
   m_ObjectHideFlags: 0
@@ -1876,6 +1880,7 @@ GameObject:
   - component: {fileID: 1789422811}
   - component: {fileID: 1789422810}
   - component: {fileID: 1789422809}
+  - component: {fileID: 1789422814}
   - component: {fileID: 1789422813}
   m_Layer: 0
   m_Name: Player
@@ -1903,7 +1908,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
+  m_Radius: 0.55
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1789422810
 MeshRenderer:
@@ -1988,6 +1993,33 @@ MonoBehaviour:
   player: {fileID: 0}
   speed: 20
   moveDistance: 0
+--- !u!54 &1789422814
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1789422808}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 2
 --- !u!1 &2042134620
 GameObject:
   m_ObjectHideFlags: 0

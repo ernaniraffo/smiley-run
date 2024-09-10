@@ -24,7 +24,6 @@ public class MoveSection : MonoBehaviour {
     }
 
     void OnTriggerEnter(Collider other) {
-        Debug.Log("TRIGGER ENTER: " + other.gameObject.tag);
         if (other.gameObject.CompareTag("Destroy")) {
             Destroy(gameObject);
         }

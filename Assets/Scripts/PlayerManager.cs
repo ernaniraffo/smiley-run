@@ -32,7 +32,6 @@ public class PlayerManager : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        // MovePlayerForward();
         HandleMovement();
     }
 
@@ -76,9 +75,5 @@ public class PlayerManager : MonoBehaviour {
 
     public Vector3 GetPlayerPosition() {
         return player.transform.position;
-    }
-
-    public void MovePlayerForward() {
-        player.transform.position += new Vector3(0, 0, speed * Time.deltaTime);
     }
 }
