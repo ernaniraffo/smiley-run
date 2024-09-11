@@ -27,12 +27,12 @@ public class Section : MonoBehaviour {
     }
 
     List<GameObject> GetPillars() {
-        List<GameObject> pillars = new List<GameObject> ();
+        List<GameObject> pillars = new List<GameObject>();
         for (int i = 0; i < gameObject.transform.childCount; i++) {
             Transform child = gameObject.transform.GetChild(i);
             if (child.CompareTag("Pillar")) {
                 pillars.Add(child.gameObject);
-            }   
+            }
         }
         return pillars;
     }
