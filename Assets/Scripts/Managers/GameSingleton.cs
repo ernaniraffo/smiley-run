@@ -19,13 +19,14 @@ public class GameSingleton : MonoBehaviour {
         } else {
             instance = this;
         }
-    }
 
-    void Start() {
         playerManager = gameObject.GetComponentInChildren<PlayerManager>();
         cameraManager = gameObject.GetComponentInChildren<CameraManager>();
         gridManager = gameObject.GetComponentInChildren<GridManager>();
         shapeSpawnerManager = gameObject.GetComponentInChildren<ShapeSpawnerManager>();
         sectionManager = gameObject.GetComponentInChildren<SectionManager>();
+    }
+
+    void Start() {
     }
 }
