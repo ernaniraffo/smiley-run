@@ -10,7 +10,6 @@ public class Section : MonoBehaviour {
     // Start is called before the first frame update
     void Start() {
         pillars = GetPillars();
-        Debug.Log(GameSingleton.instance.sectionManager);
         GameSingleton.instance.sectionManager.ActivatePillars(pillars);
     }
 

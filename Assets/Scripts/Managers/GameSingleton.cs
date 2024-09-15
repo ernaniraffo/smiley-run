@@ -10,7 +10,6 @@ public class GameSingleton : MonoBehaviour {
     public PlayerManager playerManager { get; private set; }
     public CameraManager cameraManager { get; private set; }
     public GridManager gridManager { get; private set; }
-    public ShapeSpawnerManager shapeSpawnerManager { get; private set; }
     public SectionManager sectionManager { get; private set; }
 
     void Awake() {
@@ -23,7 +22,6 @@ public class GameSingleton : MonoBehaviour {
         playerManager = gameObject.GetComponentInChildren<PlayerManager>();
         cameraManager = gameObject.GetComponentInChildren<CameraManager>();
         gridManager = gameObject.GetComponentInChildren<GridManager>();
-        shapeSpawnerManager = gameObject.GetComponentInChildren<ShapeSpawnerManager>();
         sectionManager = gameObject.GetComponentInChildren<SectionManager>();
     }
 
