@@ -46,7 +46,7 @@ public class GridManager : MonoBehaviour {
     }
 
     public Vector2 RandomPoint() {
-        int[] offsets = { -10, 0, 10 };
+        int[] offsets = { -10, 10 };
         int random_x = (int) gridCenter.x + offsets[Random.Range(0, offsets.Length)];
         int random_y = (int) gridCenter.y + offsets[Random.Range(0, offsets.Length)];
         return new Vector2(random_x, random_y);
