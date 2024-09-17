@@ -35,14 +35,14 @@ public class Section : MonoBehaviour {
         Vector2 frontRowStart = GameSingleton.instance.gridManager.RandomPoint();
         Vector2 backRowStart = GameSingleton.instance.gridManager.RandomPoint();
         // start the coin row 5 meters away from player
-        float cointDistanceFromPlayer = 20;
+        float coinDistanceFromPlayer = 20;
         for (int i = 0; i < 10; i += 1) {
             GameObject frontCoinSpawned = Instantiate(coinPrefab, gameObject.transform);
             GameObject backCoinSpawned = Instantiate(coinPrefab, gameObject.transform);
             frontCoinSpawned.transform.position = new Vector3(
-                frontRowStart.x, frontRowStart.y, cointDistanceFromPlayer + (distanceBetweenCoins * i));
+                frontRowStart.x, frontRowStart.y, coinDistanceFromPlayer + (distanceBetweenCoins * i));
             backCoinSpawned.transform.position = new Vector3(
-                backRowStart.x, backRowStart.y, (cointDistanceFromPlayer * 2) + (distanceBetweenCoins * i));
+                backRowStart.x, backRowStart.y, (coinDistanceFromPlayer * 2) + (distanceBetweenCoins * i));
         }
     }
 }
