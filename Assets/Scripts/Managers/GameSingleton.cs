@@ -11,6 +11,8 @@ public class GameSingleton : MonoBehaviour {
     public CameraManager cameraManager { get; private set; }
     public GridManager gridManager { get; private set; }
     public SectionManager sectionManager { get; private set; }
+    public CurrencyManager currencyManager { get; private set; }
+    public UIManager uiManager { get; private set; }
 
     void Awake() {
         if (instance != null && instance != this) {
@@ -23,6 +25,8 @@ public class GameSingleton : MonoBehaviour {
         cameraManager = gameObject.GetComponentInChildren<CameraManager>();
         gridManager = gameObject.GetComponentInChildren<GridManager>();
         sectionManager = gameObject.GetComponentInChildren<SectionManager>();
+        currencyManager = gameObject.GetComponentInChildren<CurrencyManager>();
+        uiManager = gameObject.GetComponentInChildren<UIManager>();
     }
 
     void Start() {
