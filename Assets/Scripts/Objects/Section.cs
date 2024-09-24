@@ -39,10 +39,12 @@ public class Section : MonoBehaviour {
         for (int i = 0; i < 10; i += 1) {
             GameObject frontCoinSpawned = Instantiate(coinPrefab, gameObject.transform);
             GameObject backCoinSpawned = Instantiate(coinPrefab, gameObject.transform);
-            frontCoinSpawned.transform.position = new Vector3(
-                frontRowStart.x, frontRowStart.y, coinDistanceFromPlayer + (distanceBetweenCoins * i));
-            backCoinSpawned.transform.position = new Vector3(
-                backRowStart.x, backRowStart.y, (coinDistanceFromPlayer * 2) + (distanceBetweenCoins * i));
+            frontCoinSpawned.transform.position =
+                new Vector3(frontRowStart.x, frontRowStart.y,
+                            coinDistanceFromPlayer + (distanceBetweenCoins * i));
+            backCoinSpawned.transform.position =
+                new Vector3(backRowStart.x, backRowStart.y,
+                            (coinDistanceFromPlayer * 2) + (distanceBetweenCoins * i));
         }
     }
 }

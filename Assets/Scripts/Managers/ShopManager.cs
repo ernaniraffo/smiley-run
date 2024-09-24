@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ShopManager : MonoBehaviour
-{
+public class ShopManager : MonoBehaviour {
     public List<GameObject> characters;
     private int characterOnScreen = 0;
     private int characterSelected;
@@ -12,10 +11,9 @@ public class ShopManager : MonoBehaviour
 
     // UI buttons
     public Button selectButton;
- 
+
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start() {
         // Make sure all characters are inactive when menu loads
         // Position the characters at (0, 0, 0) in world position
         for (int i = 0; i < characters.Count; i += 1) {
@@ -30,8 +28,7 @@ public class ShopManager : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    void Update() {
         HandleCharacter();
     }
 

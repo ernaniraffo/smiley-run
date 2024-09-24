@@ -2,19 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CurrencyManager : MonoBehaviour
-{
+public class CurrencyManager : MonoBehaviour {
     private int currency;
 
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start() {
         currency = PlayerPrefs.GetInt("Currency", 0);
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    void Update() {
         // Developer shortcut to clear player prefs
         if (Input.GetKeyDown(KeyCode.C)) {
             ClearPlayerCurrency();
