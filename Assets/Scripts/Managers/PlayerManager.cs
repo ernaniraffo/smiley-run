@@ -10,7 +10,8 @@ public class PlayerManager : MonoBehaviour {
     bool movingY = false;
     float duration = 0.075f;
     public float speed = 20f;
-    public float moveDistance;
+    public float horizontalDistance = 7.5f;
+    public float verticalDistance = 5f;
 
     // Movement grid size
     private float minX;
@@ -18,16 +19,21 @@ public class PlayerManager : MonoBehaviour {
     private float minY;
     private float maxY;
 
+    // Components
+    private Rigidbody playerRb;
+
     // Start is called before the first frame update
     void Start() {
         player = gameObject;
-        player.transform.position = new Vector3(0, 0, 0);
-        moveDistance = 10f;
 
-        minX = -moveDistance;
-        maxX = moveDistance;
-        minY = -moveDistance;
-        maxY = moveDistance;
+        minX = -horizontalDistance;
+        maxX = horizontalDistance;
+        minY = -verticalDistance;
+        maxY = verticalDistance;
+
+        playerRb = GetComponent<Rigidbody>();
+        // make sure gravity is off
+        playerRb.useGravity = false;
     }
 
     // Update is called once per frame
@@ -40,19 +46,19 @@ public class PlayerManager : MonoBehaviour {
         float y = player.gameObject.transform.position.y;
 
         if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) && y < maxY) {
-            y += moveDistance;
+            y += verticalDistance;
             move = true;
         }
         if ((Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow)) && x > minX) {
-            x -= moveDistance;
+            x -= horizontalDistance;
             move = true;
         }
         if ((Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow)) && x < maxX) {
-            x += moveDistance;
+            x += horizontalDistance;
             move = true;
         }
         if ((Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)) && y > minY) {
-            y -= moveDistance;
+            y -= verticalDistance;
             move = true;
         }
 
@@ -75,5 +81,17 @@ public class PlayerManager : MonoBehaviour {
 
     public Vector3 GetPlayerPosition() {
         return player.transform.position;
+    }
+
+    public void OnCollisionEnter(Collision collision) {
+        if (collision.gameObject.CompareTag("Obstacle")) {
+            Debug.Log("Collided with obstacle: " + collision.gameObject.name);
+            // turn gravity on to make it seem we are dead
+            playerRb.useGravity = true;
+            // should stop the section moving towards camera
+            GameSingleton.instance.sectionManager.StopSections();
+        } else {
+            Debug.Log("Collided with " + collision.gameObject.name);
+        }
     }
 }

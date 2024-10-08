@@ -6,6 +6,9 @@ public class SectionManager : MonoBehaviour {
     public GameObject sectionPrefab;
     private int level = 1;
 
+    // boolean to stop sections when player "dies"
+    public bool stopSections { get; private set; }
+
     // Start is called before the first frame update
     void Start() {
     }
@@ -35,5 +38,9 @@ public class SectionManager : MonoBehaviour {
             // remove from list so we dont roll it again in our RNG
             pillars.RemoveAt(pillarIndex);
         }
+    }
+
+    public void StopSections() {
+        stopSections = true;
     }
 }
