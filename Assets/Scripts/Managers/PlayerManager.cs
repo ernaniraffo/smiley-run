@@ -26,10 +26,11 @@ public class PlayerManager : MonoBehaviour {
     void Start() {
         player = gameObject;
 
-        minX = -horizontalDistance;
-        maxX = horizontalDistance;
-        minY = -verticalDistance;
-        maxY = verticalDistance;
+        Vector3 playerPos = GetPlayerPosition();
+        minX = playerPos.x - horizontalDistance;
+        maxX = playerPos.x + horizontalDistance;
+        minY = playerPos.y - verticalDistance;
+        maxY = playerPos.y + verticalDistance;
 
         playerRb = GetComponent<Rigidbody>();
         // make sure gravity is off
@@ -45,29 +46,31 @@ public class PlayerManager : MonoBehaviour {
         float x = player.gameObject.transform.position.x;
         float y = player.gameObject.transform.position.y;
 
-        if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) && y < maxY) {
-            y += verticalDistance;
-            move = true;
-        }
-        if ((Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow)) && x > minX) {
-            x -= horizontalDistance;
-            move = true;
-        }
-        if ((Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow)) && x < maxX) {
-            x += horizontalDistance;
-            move = true;
-        }
-        if ((Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)) && y > minY) {
-            y -= verticalDistance;
-            move = true;
-        }
+        if (!GameSingleton.instance.sectionManager.stopSections) {
+            if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) && y < maxY) {
+                y += verticalDistance;
+                move = true;
+            }
+            if ((Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow)) && x > minX) {
+                x -= horizontalDistance;
+                move = true;
+            }
+            if ((Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow)) && x < maxX) {
+                x += horizontalDistance;
+                move = true;
+            }
+            if ((Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)) && y > minY) {
+                y -= verticalDistance;
+                move = true;
+            }
 
-        if (move && !movingX && !movingY) {
-            move = false;
-            movingX = true;
-            movingY = true;
-            transform.DOMoveX(x, duration).OnComplete(StopMovingX);
-            transform.DOMoveY(y, duration).OnComplete(StopMovingY);
+            if (move && !movingX && !movingY) {
+                move = false;
+                movingX = true;
+                movingY = true;
+                transform.DOMoveX(x, duration).OnComplete(StopMovingX);
+                transform.DOMoveY(y, duration).OnComplete(StopMovingY);
+            }
         }
     }
 
