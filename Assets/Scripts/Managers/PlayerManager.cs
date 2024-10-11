@@ -12,16 +12,21 @@ public class PlayerManager : MonoBehaviour {
     public float speed = 20f;
     public float horizontalDistance = 7.5f;
     public float verticalDistance = 3f;
+    public Vector3 playerStartPosition { get; private set; }
 
     // Components
     private Rigidbody playerRb;
 
-    // Start is called before the first frame update
-    void Start() {
+    void Awake() {
         player = gameObject;
+        playerStartPosition = player.transform.position;
         playerRb = GetComponent<Rigidbody>();
         // make sure gravity is off
         playerRb.useGravity = false;
+    }
+
+    // Start is called before the first frame update
+    void Start() {
     }
 
     // Update is called once per frame

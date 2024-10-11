@@ -2,13 +2,10 @@ using UnityEngine;
 
 public class GridManager : MonoBehaviour {
 
-    public Vector2 gridCenter { get; private set; }
     private float horizontalOffset;
     private float verticalOffset;
 
     void Start() {
-        gridCenter = GameSingleton.instance.playerManager.GetPlayerPosition();
-        Debug.Log("Grid center: " + gridCenter);
         horizontalOffset = GameSingleton.instance.playerManager.horizontalDistance;
         verticalOffset = GameSingleton.instance.playerManager.verticalDistance;
     }
@@ -19,6 +16,7 @@ public class GridManager : MonoBehaviour {
         // *  *  *
         //    *
         // The multiplier should be -1, 0, 1. Any other value is undefined.
+        Vector2 gridCenter = GameSingleton.instance.playerManager.playerStartPosition;
         return new Vector2(gridCenter.x + (horizontalOffset * horizontalMultiplier),
                            gridCenter.y + (verticalOffset * verticalMultiplier));
     }
@@ -31,6 +29,7 @@ public class GridManager : MonoBehaviour {
     }
 
     public bool InBounds(Vector2 point) {
+        Vector2 gridCenter = GameSingleton.instance.playerManager.playerStartPosition;
         return (point.x >= gridCenter.x - horizontalOffset) &&
                (point.x <= gridCenter.x + horizontalOffset) &&
                (point.y >= gridCenter.y - verticalOffset) &&
