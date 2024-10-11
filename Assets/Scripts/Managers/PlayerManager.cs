@@ -11,13 +11,7 @@ public class PlayerManager : MonoBehaviour {
     float duration = 0.075f;
     public float speed = 20f;
     public float horizontalDistance = 7.5f;
-    public float verticalDistance = 5f;
-
-    // Movement grid size
-    private float minX;
-    private float maxX;
-    private float minY;
-    private float maxY;
+    public float verticalDistance = 3f;
 
     // Components
     private Rigidbody playerRb;
@@ -25,13 +19,6 @@ public class PlayerManager : MonoBehaviour {
     // Start is called before the first frame update
     void Start() {
         player = gameObject;
-
-        Vector3 playerPos = GetPlayerPosition();
-        minX = playerPos.x - horizontalDistance;
-        maxX = playerPos.x + horizontalDistance;
-        minY = playerPos.y - verticalDistance;
-        maxY = playerPos.y + verticalDistance;
-
         playerRb = GetComponent<Rigidbody>();
         // make sure gravity is off
         playerRb.useGravity = false;
@@ -47,21 +34,27 @@ public class PlayerManager : MonoBehaviour {
         float y = player.gameObject.transform.position.y;
 
         if (!GameSingleton.instance.sectionManager.stopSections) {
-            if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) && y < maxY) {
+            if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) {
                 y += verticalDistance;
                 move = true;
             }
-            if ((Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow)) && x > minX) {
+            if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow)) {
                 x -= horizontalDistance;
                 move = true;
             }
-            if ((Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow)) && x < maxX) {
+            if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow)) {
                 x += horizontalDistance;
                 move = true;
             }
-            if ((Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)) && y > minY) {
+            if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)) {
                 y -= verticalDistance;
                 move = true;
+            }
+
+            // Check if the new position is valid
+            // If not valid, then do not move!
+            if (move && !GameSingleton.instance.gridManager.InBounds(new Vector2(x, y))) {
+                move = false;
             }
 
             if (move && !movingX && !movingY) {

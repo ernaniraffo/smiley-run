@@ -5,30 +5,17 @@ using UnityEngine;
 
 public class Section : MonoBehaviour {
     public GameObject floor { get; private set; }
-    private List<GameObject> pillars;
     public GameObject coinPrefab;
     private int distanceBetweenCoins = 2;
 
     // Start is called before the first frame update
     void Start() {
-        pillars = GetPillars();
-        GameSingleton.instance.sectionManager.ActivatePillars(pillars);
         SpawnCoins();
+        SpawnObstacle();
     }
 
     // Update is called once per frame
     void Update() {
-    }
-
-    List<GameObject> GetPillars() {
-        List<GameObject> pillars = new List<GameObject>();
-        for (int i = 0; i < gameObject.transform.childCount; i++) {
-            Transform child = gameObject.transform.GetChild(i);
-            if (child.CompareTag("Pillar")) {
-                pillars.Add(child.gameObject);
-            }
-        }
-        return pillars;
     }
 
     private void SpawnCoins() {
@@ -46,5 +33,23 @@ public class Section : MonoBehaviour {
                 new Vector3(backRowStart.x, backRowStart.y,
                             (coinDistanceFromPlayer * 2) + (distanceBetweenCoins * i));
         }
+    }
+
+    private void SpawnObstacle() {
+        GameObject obstacle = GameSingleton.instance.sectionManager.obstacle1;
+        float sizeOfSection = SectionSize();
+        float startOfSection = SectionStart();
+        GameObject spawnedObject = Instantiate(obstacle, transform, true);
+        Vector2 randomPoint = GameSingleton.instance.gridManager.RandomPoint();
+        Vector3 point = new Vector3(randomPoint.x, randomPoint.y, startOfSection);
+        spawnedObject.transform.position = point;
+    }
+
+    private float SectionSize() {
+        return transform.lossyScale.z;
+    }
+
+    private float SectionStart() {
+        return transform.position.z - (transform.lossyScale.z / 2);
     }
 }
