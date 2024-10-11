@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SectionManager : MonoBehaviour {
     public GameObject sectionPrefab;
-    public int level {get; private set;} = 1;
+    public int level { get; private set; } = 1;
 
     // boolean to stop sections when player "dies"
     public bool stopSections { get; private set; }
