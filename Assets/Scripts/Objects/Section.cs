@@ -4,14 +4,17 @@ using DG.Tweening;
 using UnityEngine;
 
 public class Section : MonoBehaviour {
-    public GameObject floor { get; private set; }
+    public GameObject floor;
     public GameObject coinPrefab;
     private int distanceBetweenCoins = 2;
+    private int distanceBetweenObjects = 10;
 
     // Start is called before the first frame update
     void Start() {
         SpawnCoins();
         SpawnObstacle();
+        Debug.Log("Section size: " + SectionSize());
+        Debug.Log("Num objects to spawn: " + NumObjectsToSpawn());
     }
 
     // Update is called once per frame
@@ -37,19 +40,32 @@ public class Section : MonoBehaviour {
 
     private void SpawnObstacle() {
         GameObject obstacle = GameSingleton.instance.sectionManager.obstacle1;
-        float sizeOfSection = SectionSize();
         float startOfSection = SectionStart();
-        GameObject spawnedObject = Instantiate(obstacle, transform, true);
-        Vector2 randomPoint = GameSingleton.instance.gridManager.RandomPoint();
-        Vector3 point = new Vector3(randomPoint.x, randomPoint.y, startOfSection);
-        spawnedObject.transform.position = point;
+
+        // spawn a number of obstacles in the section
+        for (int i = 0; i < NumObjectsToSpawn(); i++) {
+            GameObject spawnedObject = Instantiate(obstacle, transform, true);
+            Vector2 randomPoint = GameSingleton.instance.gridManager.RandomPoint();
+
+            // don't spawn objects in the middle, probably will revert this because
+            // otherwise you can stay in the middle forever and not lose
+            if (randomPoint != GameSingleton.instance.gridManager.GridCenter()) {
+                Vector3 point = new Vector3(randomPoint.x, randomPoint.y,
+                                        startOfSection + (distanceBetweenObjects * i));
+                spawnedObject.transform.position = point;
+            }
+        }
     }
 
     private float SectionSize() {
-        return transform.lossyScale.z;
+        return floor.transform.lossyScale.z;
     }
 
     private float SectionStart() {
-        return transform.position.z - (transform.lossyScale.z / 2);
+        return floor.transform.position.z - (floor.transform.lossyScale.z / 2);
+    }
+
+    private float NumObjectsToSpawn() {
+        return SectionSize() / distanceBetweenObjects;
     }
 }

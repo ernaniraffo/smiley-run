@@ -410,6 +410,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2038890110342902127, guid: 1259585c70dd1499a82a89a597c4e99e, type: 3}
+      propertyPath: floor
+      value: 
+      objectReference: {fileID: 1150436955}
     - target: {fileID: 3614698609347921366, guid: 1259585c70dd1499a82a89a597c4e99e, type: 3}
       propertyPath: m_Name
       value: SectionProto
@@ -1222,6 +1226,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1105399565}
   m_CullTransparentMesh: 1
+--- !u!1 &1150436955 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4092633233449907022, guid: 1259585c70dd1499a82a89a597c4e99e, type: 3}
+  m_PrefabInstance: {fileID: 319806113}
+  m_PrefabAsset: {fileID: 0}
 --- !u!850595691 &1172828451
 LightingSettings:
   m_ObjectHideFlags: 0
