@@ -16,7 +16,6 @@ public class SpawnNextSection : MonoBehaviour {
 
     void OnTriggerEnter(Collider other) {
         if (other.gameObject.CompareTag("Player")) {
-            Debug.Log("Player Entered");
             Vector3 pos = new Vector3(transform.parent.position.x, transform.parent.position.y,
                                       transform.parent.position.z + distance);
             GameSingleton.instance.sectionManager.SpawnNextSection(pos, Quaternion.identity);
