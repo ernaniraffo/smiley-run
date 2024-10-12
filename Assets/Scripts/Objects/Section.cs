@@ -51,7 +51,7 @@ public class Section : MonoBehaviour {
             // otherwise you can stay in the middle forever and not lose
             if (randomPoint != GameSingleton.instance.gridManager.GridCenter()) {
                 Vector3 point = new Vector3(randomPoint.x, randomPoint.y,
-                                        startOfSection + (distanceBetweenObjects * i));
+                                            startOfSection + (distanceBetweenObjects * i));
                 spawnedObject.transform.position = point;
             }
         }
