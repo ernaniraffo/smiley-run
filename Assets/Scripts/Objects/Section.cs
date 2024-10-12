@@ -43,8 +43,6 @@ public class Section : MonoBehaviour {
         Vector2 randomPoint = GameSingleton.instance.gridManager.RandomPoint();
         Vector3 point = new Vector3(randomPoint.x, randomPoint.y, startOfSection);
         spawnedObject.transform.position = point;
-        Debug.Log("Spawned obstacle at " + spawnedObject.transform.position + " from " +
-                  gameObject.name);
     }
 
     private float SectionSize() {
