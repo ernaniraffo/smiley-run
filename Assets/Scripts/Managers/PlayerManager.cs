@@ -10,8 +10,8 @@ public class PlayerManager : MonoBehaviour {
     bool movingY = false;
     float duration = 0.075f;
     public float speed = 20f;
-    public int horizontalDistance {get; private set;} = 7;
-    public int verticalDistance {get; private set;} = 3;
+    public int horizontalDistance { get; private set; } = 7;
+    public int verticalDistance { get; private set; } = 3;
     public Vector3 playerStartPosition { get; private set; }
 
     // Components
