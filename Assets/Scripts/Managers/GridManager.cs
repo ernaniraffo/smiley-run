@@ -2,23 +2,14 @@ using UnityEngine;
 
 public class GridManager : MonoBehaviour {
 
-    private float horizontalOffset;
-    private float verticalOffset;
-
-    void Start() {
-        horizontalOffset = GameSingleton.instance.playerManager.horizontalDistance;
-        verticalOffset = GameSingleton.instance.playerManager.verticalDistance;
-    }
-
     public Vector2 GetPoint(float horizontalMultiplier, float verticalMultiplier) {
         // Return a point in the grid
         //    *
         // *  *  *
         //    *
         // The multiplier should be -1, 0, 1. Any other value is undefined.
-        Vector2 gridCenter = GameSingleton.instance.playerManager.playerStartPosition;
-        return new Vector2(gridCenter.x + (horizontalOffset * horizontalMultiplier),
-                           gridCenter.y + (verticalOffset * verticalMultiplier));
+        return new Vector2(GridCenter().x + (HorizontalOffset() * horizontalMultiplier),
+                           GridCenter().y + (VerticalOffset() * verticalMultiplier));
     }
 
     public Vector2 RandomPoint() {
@@ -29,10 +20,22 @@ public class GridManager : MonoBehaviour {
     }
 
     public bool InBounds(Vector2 point) {
-        Vector2 gridCenter = GameSingleton.instance.playerManager.playerStartPosition;
-        return (point.x >= gridCenter.x - horizontalOffset) &&
-               (point.x <= gridCenter.x + horizontalOffset) &&
-               (point.y >= gridCenter.y - verticalOffset) &&
-               (point.y <= gridCenter.y + verticalOffset);
+        Vector2 gridCenter = GridCenter();
+        return ((int) point.x >= (int) gridCenter.x - HorizontalOffset()) &&
+               ((int) point.x <= (int) gridCenter.x + HorizontalOffset()) &&
+               ((int) point.y >= (int) gridCenter.y - VerticalOffset()) &&
+               ((int) point.y <= (int) gridCenter.y + VerticalOffset());
+    }
+
+    public int HorizontalOffset() {
+        return GameSingleton.instance.playerManager.horizontalDistance;
+    }
+
+    public int VerticalOffset() {
+        return GameSingleton.instance.playerManager.verticalDistance;
+    }
+
+    public Vector2 GridCenter() {
+        return GameSingleton.instance.playerManager.playerStartPosition;
     }
 }
