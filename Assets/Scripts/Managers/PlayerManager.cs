@@ -87,12 +87,15 @@ public class PlayerManager : MonoBehaviour {
     public void OnCollisionEnter(Collision collision) {
         if (collision.gameObject.CompareTag("Obstacle")) {
             Debug.Log("Collided with obstacle: " + collision.gameObject.name);
-            // turn gravity on to make it seem we are dead
-            playerRb.useGravity = true;
-            // should stop the section moving towards camera
-            GameSingleton.instance.sectionManager.StopSections();
+            RunFail();
         } else {
             Debug.Log("Collided with " + collision.gameObject.name);
         }
+    }
+
+    public void RunFail() {
+        playerRb.useGravity = true;
+        GameSingleton.instance.sectionManager.StopSections();
+        GameSingleton.instance.uiManager.ShowPlayAgainMenu();
     }
 }
