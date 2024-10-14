@@ -1,7 +1,7 @@
 using UnityEngine;
 
 public class CameraManager : MonoBehaviour {
-    public GameObject mainCamera {get; private set;}
+    public GameObject mainCamera { get; private set; }
     public float distanceFromPlayer = 10;
 
     public float rotationX = 5;
@@ -26,8 +26,9 @@ public class CameraManager : MonoBehaviour {
             mainCamera.transform.position = new Vector3(playerPosition.x, playerPosition.y,
                                                         playerPosition.z - distanceFromPlayer);
         } else {
-            mainCamera.transform.position = GameSingleton.instance.playerManager.GetPlayerPosition() +
-                                        new Vector3(0, posY, -distanceFromPlayer);
+            mainCamera.transform.position =
+                GameSingleton.instance.playerManager.GetPlayerPosition() +
+                new Vector3(0, posY, -distanceFromPlayer);
             mainCamera.transform.rotation = Quaternion.Euler(rotationX, 0, 0);
         }
     }
