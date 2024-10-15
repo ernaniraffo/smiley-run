@@ -7,7 +7,6 @@ public class Section : MonoBehaviour {
     public GameObject floor;
     public GameObject coinPrefab;
     private int distanceBetweenCoins = 2;
-    private int distanceBetweenObjects = 10;
 
     // Start is called before the first frame update
     void Start() {
@@ -51,7 +50,7 @@ public class Section : MonoBehaviour {
             // otherwise you can stay in the middle forever and not lose
             if (randomPoint != GameSingleton.instance.gridManager.GridCenter()) {
                 Vector3 point = new Vector3(randomPoint.x, randomPoint.y,
-                                            startOfSection + (distanceBetweenObjects * i));
+                                            startOfSection + (GameSingleton.instance.sectionManager.distanceBetweenObjects * i));
                 spawnedObject.transform.position = point;
             }
         }
@@ -66,6 +65,6 @@ public class Section : MonoBehaviour {
     }
 
     private float NumObjectsToSpawn() {
-        return SectionSize() / distanceBetweenObjects;
+        return SectionSize() / GameSingleton.instance.sectionManager.distanceBetweenObjects;
     }
 }
